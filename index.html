@@ -9,15 +9,15 @@
   </head>
   <body>
     <div
-      class="container min-h-screen xl:h-screen bg-center bg-cover px-3 xl:px-28 xl:py-5 relative dark-theme"
+      class="container min-h-screen xl:h-screen bg-center bg-cover px-3 xl:px-28 xl:py-5 relative dark-theme overflow-hidden"
     >
       <nav class="flex items-center">
         <img src="images/logo.png" class="w-40 cursor-pointer" />
-        <ul class="flex-1 text-center ">
+        <ul class="flex-1 text-center">
           <li class="list-none inline-block px-5">
             <a href="#" class="no-underlinepx-2">Home</a>
           </li>
-          <li class="list-none inline-block px-5  nav-list-item">
+          <li class="list-none inline-block px-5 transition duration-100">
             <a href="#" class="no-underlinepx-2">About</a>
           </li>
           <li class="list-none inline-block px-5">
@@ -25,24 +25,32 @@
           </li>
           <li class="list-none inline-block px-5">
             <a href="#" class="no-underlinepx-2">Contact</a>
-          </li class="list-none inline-block px-5">
-          <button id="theme-toggle" class=" ml-4 focus:outline-none">
-            Toggle Theme
-          </button>
+          </li>
+
+          <li class="list-none inline-block px-5">
+            <a href="#" id="theme-toggle" class="no-underlinepx-2">Toggle</a>
+          </li>
         </ul>
-        <img src="images/shopping-bag-svgrepo-com (2).svg " class="w-12 cursor-pointer" />
+        <img
+          src="images/shopping-bag-svgrepo-com (2).svg "
+          class="w-12 cursor-pointer"
+        />
       </nav>
-      <div class="xl:flex xl:flex-row xl:text-left">
-        <div class=" xl:mt-32 mt-10">
+      <div class="xl:flex sm:flex-row text-center sm:text-left">
+        <div class="xl:mt-32 mt-10">
           <h1 class="text-5xl font-bold leading-normal">
             Groceries <br />
-            delivery in <span class="font-light animate-pulse">15 mins</span>
+            delivery in
+            <span
+              class="font-extrabold animate-pulse bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-green-500"
+              >15 mins</span
+            >
           </h1>
           <p class="text-gray-500">
             Grocify offers a wide range of products, including fresh produce,
             meats, dairy, baked goods, and non-perishable items.
           </p>
-          <div class="mt-10 flex  gap-3">
+          <div class="mt-10 flex justify-center sm:justify-around gap-6">
             <a
               href="#"
               class="bg-yellow-500 rounded-3xl py-3 px-8 font-medium inline-block xl:mr-16 border border-transparent hover:bg-transparent hover:border-yellow-500 hover: duration-300 hover:border"
@@ -50,27 +58,25 @@
             >
             <a
               href="#"
-              class="bg-green-500 okkk rounded-3xl py-3 px-6 font-medium inline-block xl:mr-16 border border-transparent hover:bg-transparent hover:border-green-500 hover: duration-300 hover:border"
+              class="bg-green-500 group rounded-3xl py-3 px-6 font-medium inline-block xl:mr-16 border border-transparent hover:bg-transparent hover:border-green-500 hover: duration-300 hover:border"
               >Download App
-              <span class="animate-bounce text-lg inline-block bg-none"
+              <span
+                class="animate-bounce group-hover:animate-none text-lg inline-block bg-none"
                 >&#8595;</span
               ></a
             >
           </div>
         </div>
         <div class="w-auto max-h-max">
-          <img src="images/grocery-image.png" class="h-auto" alt="" />
+          <img src="images/grocery-image.png" class="" alt="" />
         </div>
       </div>
-      <div class="loader hidden fixed top-0 left-0 w-full h-full 
-    z-9999 bg-white text-white text-2xl text-center mx-auto">
-       
-      <span class="animate-pulse text-6xl">  ...</span>
+      <div
+        class="loader hidden place-items-center fixed top-0 left-0 w-full h-full z-9999 bg-white text-white text-2xl text-center mx-auto"
+      >
+        <span class="animate-pulse text-6xl">...</span>
       </div>
     </div>
     <script src="index.js"></script>
-    
-    
-    
   </body>
 </html>
