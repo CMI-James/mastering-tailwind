@@ -10,9 +10,7 @@
   --text-color: #000000;
 }
 
-span {
-  background-color: transparent;
-}
+
 * {
   background-color: var(--nav-bg-color);
   color: var(--text-color);
