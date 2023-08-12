@@ -12,27 +12,28 @@
 
 
 * {
+  box-sizing: border-box;
   background-color: var(--nav-bg-color);
   color: var(--text-color);
 }
-/* Define the slide-in animation */
+
 @keyframes slideIn {
   0% {
-    transform: translateX(-100%); /* Start outside the viewport */
+    transform: translateX(-100%); 
     opacity: 0;
   }
   100% {
-    transform: translateX(0); /* End at the normal position */
+    transform: translateX(0); 
     opacity: 1;
   }
 }
 
-/* Apply the animation to the navigation list items */
+
 ul li {
   animation: slideIn 0.5s ease-out forwards;
 }
 
-/* Adjust animation delays for each list item */
+
 ul li:nth-child(1) {
   animation-delay: 0.02s; /* Adjust the delay for the first item */
 }
