@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
       </Head>
 
       <div
-        class={`${
+        className={`${
           mode ? "bg-black text-white" : "bg-white text-black"
         } flex justify-between main px-8 flex-col h-screen w-screen sm:px-24 lg:px-20 py-9 relative ${
           mode
@@ -25,8 +25,11 @@ const Layout = ({ children }) => {
             : "selection:bg-yellow-400 selection:text-zinc-800"
         } `}
       >
-        <Header handleClick={handleClick} />
-        <main className="flex-grow">{children}</main>
+        <Header handleClick={handleClick} mode={mode} />
+        <main className="flex-grow">
+        
+        {React.cloneElement(children, { mode })}
+        </main>
       </div>
     </>
   );
