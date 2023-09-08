@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Link from "next/link";
 import NavLinks from "@/components/NavLinks";
 
 const Header = ({ setMode, mode }) => {
+  const [under, setUnder] = useState("");
+  const handleUnder = (index) => {
+    setUnder(index);
+  };
   const handleClick = () => {
     setMode(!mode);
   };
@@ -19,14 +23,18 @@ const Header = ({ setMode, mode }) => {
       />
       <ul className="hidden list-none gap-10 lg:flex relative  text-lg ">
         {NavLinks.map((name, index) => (
-          <li key={index}
-            className={`border-b-2 border-transparent hover:border-b-2 ${
-              mode ? " hover:border-yellow-500" : "hover:border-green-500"
-            }`}
+          <li
+            onClick={() => handleUnder(index)}
+            key={index}
+            className={`${
+              under === index && mode
+                ? " border-yellow-500"
+                : under === index && !mode
+                ? "border-green-500"
+                : ""
+            } border-b-4 border-transparent hover:border-b-4 `}
           >
-            <Link  href={`/${name.toLowerCase()}`}>
-              {name}
-            </Link>
+            <Link href={`/${name.toLowerCase()}`}>{name}</Link>
           </li>
         ))}
       </ul>
@@ -34,7 +42,7 @@ const Header = ({ setMode, mode }) => {
         <Link href="/shop">
           <img
             src={mode ? "images/bag-yellow.svg" : "images/bag-green.svg"}
-            className="w-10 md:w-12 h-10 cursor-pointer hidden sm:flex"
+            className="w-10 md:w-12 h-10 cursor-pointer flex"
           />
         </Link>
         <input

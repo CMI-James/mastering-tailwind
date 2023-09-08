@@ -23,7 +23,7 @@ const Layout = ({ children, mode, setMode }) => {
       <div
         className={`${
           mode ? "bg-black text-white" : "bg-white text-black"
-        } flex justify-between  px-20 flex-col  h-full sm:h-screen w-screen sm:px-24 lg:px-20 py-9 relative ${
+        } flex justify-between  px-10 flex-col  min-h-screen sm:h-screen w-screen sm:px-24 lg:px-20 py-9 relative ${
           mode
             ? " selection:bg-green-500 selection:text-white"
             : "selection:bg-yellow-400 selection:text-zinc-800"

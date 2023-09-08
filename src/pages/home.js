@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const Hero = ({ mode }) => {
+  
   return (
     <div className="flex flex-col-reverse text-center lg:flex-row justify-between  lg:text-left mb-24 lg:mb-0">
       <div className="flex-1  flex justify-between lg:justify-end flex-col gap-7">
