@@ -4,16 +4,15 @@ import { useState } from "react";
 import React from "react";
 import Header from "@/pages/sections/header";
 
-const Layout = ({ children }) => {
-  const [mode, setMode] = useState(true);
-  const handleClick = () => {
-    setMode(!mode);
-  };
+const Layout = ({ children, mode, setMode }) => {
   return (
     <>
       <Head>
-        <title>Forking Headis</title>
-        <meta name="description" content="This is the fucking headis" />
+        <title>BM Stores</title>
+        <meta
+          name="description"
+          content="The Largest Food Store in that Area"
+        />
       </Head>
 
       <div
@@ -25,11 +24,8 @@ const Layout = ({ children }) => {
             : "selection:bg-yellow-400 selection:text-zinc-800"
         } `}
       >
-        <Header handleClick={handleClick} mode={mode} />
-        <main className="flex-grow">
-        
-        {React.cloneElement(children, { mode })}
-        </main>
+        <Header setMode={setMode} mode={mode} />
+        <main className="flex-grow">{children}</main>
       </div>
     </>
   );

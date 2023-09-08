@@ -1,19 +1,14 @@
+
 import React, { useState } from "react";
 
-const Hero = ({mode}) => {
+const Hero = () => {
   return (
     <div className="flex flex-col md:flex-col md:text-center lg:flex-row justify-between text-center lg:text-left">
       <div className="flex-1 flex-shrink mb-0 sm:mt-36">
         <h1 className="text-4xl sm:text-5xl font-bold leading-normal">
           Groceries <br />
           delivery in&nbsp;
-          <span
-            className={`font-extrabold animate-pulse bg-clip-text text-transparent  bg-transparent ${
-              mode
-                ? "bg-gradient-to-r from-yellow-500 to-green-500"
-                : "bg-gradient-to-r from-green-500 to-yellow-500"
-            }`}
-          >
+          <span className="font-extrabold animate-pulse bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 to-green-500 bg-transparent">
             15 mins
           </span>
         </h1>

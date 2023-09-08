@@ -3,7 +3,10 @@ import React from "react";
 import Link from "next/link";
 import NavLinks from "@/components/NavLinks";
 
-const Header = ({ handleClick, mode }) => {
+const Header = ({ setMode, mode }) => {
+  const handleClick = () => {
+    setMode(!mode);
+  };
   return (
     <nav className="relative flex items-center justify-between">
       <img
@@ -16,12 +19,12 @@ const Header = ({ handleClick, mode }) => {
       />
       <ul className="hidden list-none gap-10 lg:flex relative  z-0 items-center text-lg ">
         {NavLinks.map((name, index) => (
-          <li
+          <li key={index}
             className={`hover:border-b-2 ${
               mode ? " hover:border-yellow-500" : "hover:border-green-500"
             }`}
           >
-            <Link key={index} href={`/${name.toLowerCase()}`}>
+            <Link  href={`/${name.toLowerCase()}`}>
               {name}
             </Link>
           </li>
