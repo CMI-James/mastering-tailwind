@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <Layout setMode={setMode} mode={mode}>
-      <Component {...pageProps} />
+      <Component {...pageProps} setMode={setMode} mode={mode} />
     </Layout>
   );
 }

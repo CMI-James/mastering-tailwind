@@ -17,10 +17,10 @@ const Header = ({ setMode, mode }) => {
         }
         className="w-32 md:w-40 cursor-pointer"
       />
-      <ul className="hidden list-none gap-10 lg:flex relative  z-0 items-center text-lg ">
+      <ul className="hidden list-none gap-10 lg:flex relative  text-lg ">
         {NavLinks.map((name, index) => (
           <li key={index}
-            className={`hover:border-b-2 ${
+            className={`border-b-2 border-transparent hover:border-b-2 ${
               mode ? " hover:border-yellow-500" : "hover:border-green-500"
             }`}
           >
