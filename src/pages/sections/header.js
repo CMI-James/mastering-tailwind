@@ -1,10 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router"
 
 import Link from "next/link";
 import NavLinks from "@/components/NavLinks";
 
 const Header = ({ setMode, mode }) => {
-  const [under, setUnder] = useState("");
+  const [under, setUnder] = useState(0);
+  const router = useRouter(); // Access the router
+
+  useEffect(() => {
+    // Get the current route path (e.g., '/about')
+    const currentRoute = router.asPath;
+
+    // Find the index of the current route in the NavLinks array
+    const currentIndex = NavLinks.findIndex(
+      (name) => `/${name.toLowerCase()}` === currentRoute
+    );
+
+    if (currentIndex !== -1) {
+      // If the current route is found in NavLinks, set it as underlined
+      setUnder(currentIndex);
+    }
+  }, [router.asPath]);
+
   const handleUnder = (index) => {
     setUnder(index);
   };
