@@ -3,8 +3,9 @@ import { useRouter } from "next/router"
 
 import Link from "next/link";
 import NavLinks from "@/components/NavLinks";
+import Button from "@/components/button";
 
-const Header = ({ setMode, mode }) => {
+const Header = ({setMode, mode }) => {
   const [under, setUnder] = useState(0);
   const router = useRouter(); 
 
@@ -22,9 +23,7 @@ const Header = ({ setMode, mode }) => {
   const handleUnder = (index) => {
     setUnder(index);
   };
-  const handleClick = () => {
-    setMode(!mode);
-  };
+  
   return (
     <nav className="relative flex items-center justify-between">
       <img
@@ -44,7 +43,7 @@ const Header = ({ setMode, mode }) => {
               under === index && mode
                 ? " border-yellow-500"
                 : under === index && !mode
-                ? "border-green-500"
+                ? "border-green-400"
                 : ""
             } border-b-4 border-transparent hover:border-b-4 `}
           >
@@ -59,16 +58,8 @@ const Header = ({ setMode, mode }) => {
             className="w-10 md:w-12 h-10 cursor-pointer flex"
           />
         </Link>
-        <input
-          onClick={() => handleClick()}
-          type="checkbox"
-          className="peer sr-only opacity-0"
-          id="theme-toggle"
-        />
-        <label
-          htmlFor="theme-toggle"
-          className="relative flex h-6 w-11 cursor-pointer items-center rounded-full bg-gray-400 px-0.5 outline-gray-400 transition-colors before:h-5 before:w-5 before:rounded-full before:bg-white before:shadow before:transition-transform before:duration-300 peer-checked:bg-green-500 peer-checked:before:translate-x-full peer-focus-visible:outline peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gray-400 peer-checked:peer-focus-visible:outline-green-500"
-        ></label>
+        <Button mode={mode} setMode={setMode}/>
+       
       </div>
     </nav>
   );
