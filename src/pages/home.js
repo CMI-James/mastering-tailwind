@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 
 const Hero = ({ mode }) => {
@@ -24,12 +25,12 @@ const Hero = ({ mode }) => {
           meats, dairy, baked goods, and non-perishable items.
         </p>
         <div className="flex-col sm:flex-row  flex justify-center lg:justify-start gap-6">
-          <a
-            href="#"
+          <Link
+            href="/shop"
             className=" rotate-border-button py-3 px-8 bg-yellow-500 font-medium rounded-3xl inline-block border-2 border-transparent hover:bg-transparent hover:border-yellow-500  hover:border-2 whitespace-nowrap"
           >
             Order Now
-          </a>
+          </Link>
           <a
             href="#"
             className=" py-3 px-6 bg-green-500 font-medium group rounded-3xl inline-block border-2 border-transparent hover:bg-transparent hover:border-green-500 hover:border-2 whitespace-nowrap"

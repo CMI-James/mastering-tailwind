@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
 
 import Link from "next/link";
 import NavLinks from "@/components/NavLinks";
 import Button from "@/components/button";
 
-const Header = ({setMode, mode }) => {
+const Header = ({ setMode, mode }) => {
   const [under, setUnder] = useState(0);
-  const router = useRouter(); 
+  const router = useRouter();
 
   useEffect(() => {
     const currentRoute = router.asPath;
@@ -15,7 +15,6 @@ const Header = ({setMode, mode }) => {
       (name) => `/${name.toLowerCase()}` === currentRoute
     );
     if (currentIndex !== -1) {
-     
       setUnder(currentIndex);
     }
   }, [router.asPath]);
@@ -23,17 +22,19 @@ const Header = ({setMode, mode }) => {
   const handleUnder = (index) => {
     setUnder(index);
   };
-  
+
   return (
     <nav className="relative flex items-center justify-between">
-      <img
-        src={
-          mode
-            ? "images/bm-stores-logo-yellow.png"
-            : "images/bm-stores-logo-green.png"
-        }
-        className="w-32 md:w-40 cursor-pointer"
-      />
+      <Link href="/home">
+        <img
+          src={
+            mode
+              ? "images/bm-stores-logo-yellow.png"
+              : "images/bm-stores-logo-green.png"
+          }
+          className="w-32 md:w-40 cursor-pointer"
+        />
+      </Link>
       <ul className="hidden list-none gap-10 lg:flex relative  text-lg ">
         {NavLinks.map((name, index) => (
           <li
@@ -58,8 +59,7 @@ const Header = ({setMode, mode }) => {
             className="w-10 md:w-12 h-10 cursor-pointer flex"
           />
         </Link>
-        <Button mode={mode} setMode={setMode}/>
-       
+        <Button mode={mode} setMode={setMode} />
       </div>
     </nav>
   );
