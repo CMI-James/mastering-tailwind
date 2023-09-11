@@ -41,10 +41,10 @@ const Header = ({setMode, mode }) => {
             key={index}
             className={`${
               under === index && mode
-                ? " border-yellow-500"
+                ? " border-yellow-500 "
                 : under === index && !mode
-                ? "border-green-400"
-                : ""
+                ? "border-green-500 "
+                : "text-zinc-500 text-opacity-70"
             } border-b-4 border-transparent hover:border-b-4 `}
           >
             <Link href={`/${name.toLowerCase()}`}>{name}</Link>
