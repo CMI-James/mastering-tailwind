@@ -1,38 +1,211 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import {
+  BsCameraVideoFill,
+  BsBackspaceFill,
+  BsHouseAddFill,
+  BsTvFill,
+  BsCalendar2,
+  BsBox2,
+} from "react-icons/bs";
 
-## Getting Started
+const API_KEY = "8fd9104bfdd163dd0406d6f990f34d57";
+const API_URL = "https://api.themoviedb.org/3/movie/";
 
-First, run the development server:
+const MovieDetails = () => {
+  const router = useRouter();
+  const { id } = router.query;
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+  const [movieDetails, setMovieDetails] = useState(null);
+  const [videoDetails, setVideoDetails] = useState(null);
+  const [credits, setCredits] = useState(null);
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+  useEffect(() => {
+    if (id) {
+      fetch(`${API_URL}${id}/credits?api_key=${API_KEY}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setCredits(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching credits:", error);
+          setCredits(null);
+        });
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+      fetch(`${API_URL}${id}?api_key=${API_KEY}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setMovieDetails(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching movie details:", error);
+          setMovieDetails(null);
+        });
+    }
+  }, [id]);
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+  useEffect(() => {
+    if (id) {
+      fetch(`${API_URL}${id}/videos?api_key=${API_KEY}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.results.length > 0) {
+            setVideoDetails(data.results[0]);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching video details:", error);
+          setVideoDetails(null);
+        });
+    }
+  }, [id]);
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+  if (!movieDetails) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-2xl">Loading...</p>
+      </div>
+    );
+  }
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  const { title, release_date, runtime, overview, poster_path, stars } =
+    movieDetails;
 
-## Learn More
+  const backgroundImageStyle = {
+    backgroundImage: `url(https://image.tmdb.org/t/p/original${poster_path})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
 
-To learn more about Next.js, take a look at the following resources:
+  // Array to represent the navigation links
+  const navigationLinks = [
+    { icon: <BsHouseAddFill />, text: "Home", href: "/" },
+    { icon: <BsCameraVideoFill />, text: "Movies", href: "/" },
+    { icon: <BsTvFill />, text: "TV Series", href: "/" },
+    { icon: <BsCalendar2 />, text: "Upcoming", href: "/" },
+  ];
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  return (
+    <div className=" w-full text-black flex">
+      <div className="py-8  w-64 border-zinc-300 border-2 h-screen rounded-r-2xl flex justify-between flex-col items-center">
+        <Link
+          href="/"
+          className="flex items-center w-full pl-5 text-2xl gap-5 "
+        >
+          <BsBox2 className="fill-red-600" /> MoviesBox
+        </Link>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+        <ul className="text-xl  flex flex-col w-full">
+          {navigationLinks.map((link, index) => (
+            <li key={index}>
+              <Link
+                href={link.href}
+                className="flex  items-center hover:bg-red-50 duration-300 gap-2 hover:text-red-600 hover:fill-white hover:border-r-4 hover:border-r-red-600  pl-5 py-3"
+              >
+                {link.icon} {link.text}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="flex items-center gap-2 text-xl w-full pl-5">
+          <BsBackspaceFill /> logout
+        </p>
+      </div>
+      <div className="flex  h-screen -z-50 flex-col p-5">
+        <div className=" flex h-1/2 ">
+          {videoDetails && (
+            <iframe
+              className="w-full h-full rounded-lg"
+              src={`https://www.youtube.com/embed/${videoDetails.key}`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          )}
+        </div>
+        <div className="flex md:gap-3 opacity-80  font-bold text-md my-2 gap-1 items-center justify-center md:justify-start ">
+          <h1 data-testid="movie-title">{title}</h1>
+          &#183;
+          <p>
+            <span data-testid="movie-release-date">{release_date}</span>
+          </p>
+          &#183;
+          <p>
+            <span data-testid="movie-runtime">{runtime}</span> minutes
+          </p>
+        </div>
+        <div className="flex justify-between flex-col md:flex-row">
+          {" "}
+          <p
+            data-testid="movie-overview"
+            className="sm:text-left text-center text-sm"
+          >
+            {overview}
+          </p>
+          <div className="flex flex-col gap-2 mx-3 my-5 md:my-0 cursor-pointer">
+            <button className="whitespace-nowrap  py-2 px-4 md:w-64 rounded-lg border-red bg-red-600 text-white border-2">
+              See Showtimes
+            </button>
+            <button className="whitespace-nowrap  py-2 px-4 rounded-lg border-red border-2 bg-red-50 ">
+              More watch options
+            </button>
+          </div>
+        </div>
+        {credits && (
+          <div className="flex flex-col mt-3 gap-3">
+            <div className="flex gap-2">
+              <h2>Directors:</h2>
+              <ul className="flex text-red-600">
+                {credits.crew
+                  .filter((member) => member.job === "Director")
+                  .map((director, index, array) => (
+                    <li key={director.id}>
+                      {director.name}
+                      {index < array.length - 1 ? ", " : ""}
+                    </li>
+                  ))}
+              </ul>
+            </div>
 
-## Deploy on Vercel
+            <div className="flex gap-2">
+              <h2>Writers:</h2>
+              <ul className="flex text-red-600">
+                {credits.crew
+                  .filter(
+                    (member) =>
+                      member.job === "Screenplay" || member.job === "Writer"
+                  )
+                  .map((writer, index, array) => (
+                    <li key={writer.id}>
+                      {writer.name}
+                      {index < array.length - 1 ? ", " : ""}
+                    </li>
+                  ))}
+              </ul>
+            </div>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+            <div className="flex gap-2">
+              {" "}
+              <h2>Stars:</h2>
+              <ul className="flex text-red-600">
+                {credits.cast
+                  .slice(0, 3) // Limit to the first 3 stars
+                  .map((star, index) => (
+                    <li key={star.id}>
+                      {star.name}
+                      {index < 2 ? ", " : ""}{" "}
+                      {/* Add comma and space for the first 2 stars */}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+export default MovieDetails;
