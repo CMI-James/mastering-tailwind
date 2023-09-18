@@ -91,7 +91,7 @@ const MovieDetails = () => {
       <div className="py-8  w-64 border-zinc-300 border-2 h-screen rounded-r-2xl flex justify-between flex-col items-center">
         <Link
           href="/"
-          className="flex px-1 items-center w-full pl-5 text-2xl gap-5 "
+          className="flex px-2 items-center w-full pl-5 text-2xl gap-5 "
         >
           <BsBox2 className="fill-red-600" /> MoviesBox
         </Link>
