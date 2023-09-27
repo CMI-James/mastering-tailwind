@@ -60,7 +60,7 @@ const Header = ({ setMode, mode }) => {
       <div className="relative flex flex-row items-center gap-10">
         <Link href="/shop">
           <img
-            src={mode ? "/Images/bag-yellow.svg" : "images/bag-green.svg"}
+            src={mode ? "/Images/bag-yellow.svg" : "/Images/bag-green.svg"}
             className="w-10 md:w-12 h-10 cursor-pointer flex"
           />
         </Link>
