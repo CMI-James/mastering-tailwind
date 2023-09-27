@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -44,7 +45,8 @@ const Hero = ({ mode }) => {
       </div>
       <div className="relative flex-1 flex-shrink flex justify-center">
         <img
-          src="images/grocery-image.png"
+       
+          src="/Images/grocery-image.png"
           className="my-10 lg:my-0 md:mt-5 h-[70vmin] w-auto md:h-[60vmin] lg:h-[70vmin] object-cover flex"
           alt=""
         />

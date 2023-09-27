@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import NavLinks from "@/components/NavLinks";
 import Button from "@/components/button";
+import Image from "next/image";
+
 
 const Header = ({ setMode, mode }) => {
   const [under, setUnder] = useState(0);
@@ -26,11 +28,14 @@ const Header = ({ setMode, mode }) => {
   return (
     <nav className="relative flex items-center justify-between">
       <Link href="/home">
-        <img
+        <Image
+        width='50'
+        height='50'
+        alt="ok"
           src={
             mode
-              ? "images/bm-stores-logo-yellow.png"
-              : "images/bm-stores-logo-green.png"
+              ? "/Images/bm-stores-logo-yellow.svg"
+              : "/Images/bm-stores-logo-green.svg"
           }
           className="w-32 md:w-40 cursor-pointer"
         />
@@ -44,7 +49,7 @@ const Header = ({ setMode, mode }) => {
               under === index && mode
                 ? " border-yellow-500 "
                 : under === index && !mode
-                ? "border-green-500 "
+                ? "border-green-400 "
                 : "text-zinc-500 text-opacity-70"
             } border-b-4 border-transparent hover:border-b-4 `}
           >
