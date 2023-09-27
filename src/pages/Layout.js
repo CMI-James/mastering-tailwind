@@ -11,7 +11,7 @@ const Layout = ({ children, mode, setMode }) => {
         <title>BM Stores</title>
         <meta
           name="description"
-          content="The Largest Food Store in that Area"
+          content="The Largest Store in that Area"
         />
         <link
           rel="icon"
