@@ -3,7 +3,6 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const Hero = ({ mode }) => {
-
   return (
     <div className="flex flex-col-reverse text-center lg:flex-row justify-between  lg:text-left mb-24 lg:mb-0">
       <div className="flex-1  flex justify-between lg:justify-end flex-col gap-7">
@@ -45,7 +44,6 @@ const Hero = ({ mode }) => {
       </div>
       <div className="relative flex-1 flex-shrink flex justify-center">
         <img
-       
           src="/Images/grocery-image.png"
           className="my-10 lg:my-0 md:mt-5 h-[70vmin] w-auto md:h-[60vmin] lg:h-[70vmin] object-cover flex"
           alt=""
