@@ -1,18 +1,21 @@
 import Head from "next/head";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import React from "react";
 import Header from "@/pages/sections/header";
 
 const Layout = ({ children, mode, setMode }) => {
+  const router = useRouter();
+  const shouldRenderHeader = router.pathname !== "/login";
+  console.log("Router Path:", router.pathname);
+  console.log("Should Render Header:", shouldRenderHeader);
+
   return (
     <>
       <Head>
         <title>BM Stores</title>
-        <meta
-          name="description"
-          content="The Largest Store in that Area"
-        />
+        <meta name="description" content="The Largest Store in that Area" />
         <link
           rel="icon"
           href={`${mode ? "/favicon-orange.ico" : "/favicon-green.ico"}`}
@@ -29,8 +32,8 @@ const Layout = ({ children, mode, setMode }) => {
             : "selection:bg-yellow-400 selection:text-zinc-800"
         } `}
       >
-        <Header setMode={setMode} mode={mode} />
-        <main >{children}</main>
+        {shouldRenderHeader && <Header setMode={setMode} mode={mode} />}
+        <main>{children}</main>
       </div>
     </>
   );
