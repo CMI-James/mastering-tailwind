@@ -1,12 +1,16 @@
 import Head from "next/head";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import React from "react";
 import Header from "@/pages/sections/header";
 
 const Layout = ({ children, mode, setMode }) => {
   const router = useRouter();
-  const isLoginPage = router.pathname === "/login";
+  
+  // Define the array of excluded paths
+  const excludedPaths = ["/login", "/signup"];
+  
+  // Check if the current path is in the excluded paths
+  const isExcludedPage = excludedPaths.includes(router.pathname);
 
   return (
     <>
@@ -23,13 +27,13 @@ const Layout = ({ children, mode, setMode }) => {
       <div
         className={`${
           mode ? "bg-black text-white" : "bg-white text-black"
-        } flex justify-between  flex-col min-h-screen sm:h-screen w-screen   relative ${
+        } flex justify-between flex-col min-h-screen sm:h-screen w-screen relative ${
           mode
             ? "selection:bg-green-500 selection:text-white"
             : "selection:bg-yellow-400 selection:text-zinc-800"
-        } ${isLoginPage ? "login-page-styles" : ""}`}
+        } ${isExcludedPage ? "login-page-styles" : ""}`}
       >
-        {!isLoginPage && <Header setMode={setMode} mode={mode} />}
+        {!isExcludedPage && <Header setMode={setMode} mode={mode} />}
         <main>{children}</main>
       </div>
     </>

@@ -2,8 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter } from "react-icons/fa6";
+import Link from 'next/link';
 
-const Login = () => {
+const Signup = () => {
   return (
     <div className="w-full h-screen grid md:grid-cols-2 p-3 bg-zinc-900">
       <div className="relative w-full h-full  md:flex hidden bg-black rounded-s-md">
@@ -21,9 +22,9 @@ const Login = () => {
           <h1 className="text-white text-4xl mb-6">Create an account</h1>
           <p className="text-zinc-400 mb-4">
             Already have an account?{" "}
-            <a href="#" className="text-yellow-500">
+            <Link href="/login" className="text-yellow-500">
               Log in
-            </a>
+            </Link>
           </p>
           <form className="space-y-4">
             <div className="flex space-x-4">
@@ -67,7 +68,11 @@ const Login = () => {
               </button>
             </div>
             <div className="flex items-center space-x-2">
-              <input type="checkbox" id="terms" className="h-4 w-4 " />
+              <input
+                type="checkbox"
+                id="terms"
+                className="h-4 w-4 focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500"
+              />
               <label htmlFor="terms" className="text-zinc-400">
                 I agree to the{" "}
                 <a href="#" className="text-yellow-500">
@@ -77,7 +82,7 @@ const Login = () => {
             </div>
             <button
               type="submit"
-              className="w-full p-2 rounded-md bg-yellow-500 text-white hover:bg-purple-700"
+              className="w-full p-2 rounded-md bg-yellow-500 text-white hover:bg-yellow-700"
             >
               Create account
             </button>
@@ -88,12 +93,12 @@ const Login = () => {
             <hr className="flex-grow border-t border-zinc-600" />
           </div>
           <div className="flex justify-center space-x-4 w-full">
-            <button className="bg-black border-[1px] p-2 gap-2 rounded-md flex w-full justify-center items-center">
-            <FcGoogle />
+            <button className="bg-black hover:bg-zinc-950 border-[1px] p-2 gap-2 rounded-md flex w-full justify-center items-center">
+              <FcGoogle />
               <p>Google</p>
             </button>
-            <button className="bg-black border-[1px] border-white p-2 gap-2 rounded-md flex w-full justify-center items-center">
-            <FaXTwitter />
+            <button className="bg-black hover:bg-zinc-950 border-[1px] border-white p-2 gap-2 rounded-md flex w-full justify-center items-center">
+              <FaXTwitter />
               <p>Twitter</p>
             </button>
           </div>
@@ -103,4 +108,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
