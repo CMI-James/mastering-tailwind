@@ -26,7 +26,7 @@ const Header = ({ setMode, mode }) => {
   };
 
   return (
-    <nav className="relative flex items-center justify-between">
+    <nav className="relative flex items-center justify-between py-4">
       <Link href="/home">
         <Image
         width='50'
@@ -37,7 +37,7 @@ const Header = ({ setMode, mode }) => {
               ? "/Images/bm-stores-logo-yellow.svg"
               : "/Images/bm-stores-logo-green.svg"
           }
-          className="w-32 md:w-40 cursor-pointer"
+          className="w-24 md:w-28 cursor-pointer"
         />
       </Link>
       <ul className="hidden list-none gap-10 lg:flex relative  text-lg ">
@@ -61,7 +61,7 @@ const Header = ({ setMode, mode }) => {
         <Link href="/shop">
           <img
             src={mode ? "/Images/bag-yellow.svg" : "/Images/bag-green.svg"}
-            className="w-10 md:w-12 h-10 cursor-pointer flex"
+            className="w-10 md:w-10 cursor-pointer flex"
           />
         </Link>
         <Button mode={mode} setMode={setMode} />
