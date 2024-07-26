@@ -26,7 +26,7 @@ const Login = () => {
               Sign up
             </Link>
           </p>
-          <form className="space-y-4">
+          <form className="space-y-6">
             <input
               type="email"
               placeholder="Email"

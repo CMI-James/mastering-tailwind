@@ -26,7 +26,7 @@ const Signup = () => {
               Log in
             </Link>
           </p>
-          <form className="space-y-4">
+          <form className="space-y-6">
             <div className="flex space-x-4">
               <input
                 type="text"
