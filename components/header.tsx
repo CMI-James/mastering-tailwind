@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { useTheme } from "./theme-provider"
-import Button from "@/components/button"
+import Button from "./button"
 
 const NavLinks: string[] = ["Home", "About", "Features", "Contact"]
 

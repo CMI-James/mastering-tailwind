@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom button styles for magic border effect */
+@layer components {
+  .magic-border-button {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+
+  .magic-border-button::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-yellow-400 to-transparent opacity-0 transition-opacity duration-300;
+    transform: translateX(-100%);
+    animation: shimmer 2s infinite;
+  }
+
+  .magic-border-button:hover::before {
+    @apply opacity-30;
+  }
+
+  .rotate-border-button {
+    @apply magic-border-button;
+  }
+}
