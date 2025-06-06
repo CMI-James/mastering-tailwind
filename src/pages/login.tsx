@@ -1,10 +1,10 @@
-import React from "react";
+import type React from "react";
 import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 
-const Login = () => {
+const Login: React.FC = () => {
   return (
     <div className="w-full h-screen grid md:grid-cols-2 p-3 bg-zinc-900">
       <div className="relative w-full h-full md:flex hidden bg-black rounded-s-md">
@@ -19,9 +19,9 @@ const Login = () => {
       </div>
       <div className="flex flex-col justify-center items-center bg-black p-8 rounded-e-md">
         <div className="w-full max-w-md">
-          <h1 className="text-white text-5xl mb-6">Login </h1>
+          <h1 className="text-white text-5xl mb-6">Login</h1>
           <p className="text-zinc-400 mb-4">
-            Don't have an account?{" "}
+            {"Don't have an account? "}
             <Link href="/signup" className="text-yellow-500">
               Sign up
             </Link>
