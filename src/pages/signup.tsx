@@ -1,8 +1,8 @@
-import type React from "react"
-import Image from "next/image"
-import { FcGoogle } from "react-icons/fc"
-import { FaXTwitter } from "react-icons/fa6"
-import Link from "next/link"
+import type React from "react";
+import Image from "next/image";
+import { FcGoogle } from "react-icons/fc";
+import { FaXTwitter } from "react-icons/fa6";
+import Link from "next/link";
 
 const Signup: React.FC = () => {
   return (
@@ -80,7 +80,10 @@ const Signup: React.FC = () => {
                 </a>
               </label>
             </div>
-            <button type="submit" className="w-full p-2 rounded-md bg-yellow-500 text-white hover:bg-yellow-700">
+            <button
+              type="submit"
+              className="w-full p-2 rounded-md bg-yellow-500 text-white hover:bg-yellow-700"
+            >
               Create account
             </button>
           </form>
@@ -102,7 +105,7 @@ const Signup: React.FC = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
