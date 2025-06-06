@@ -1,15 +1,15 @@
-import React from "react";
-import Image from "next/image";
-import { FcGoogle } from "react-icons/fc";
-import { FaXTwitter } from "react-icons/fa6";
-import Link from 'next/link';
+import type React from "react"
+import Image from "next/image"
+import { FcGoogle } from "react-icons/fc"
+import { FaXTwitter } from "react-icons/fa6"
+import Link from "next/link"
 
-const Signup = () => {
+const Signup: React.FC = () => {
   return (
     <div className="w-full h-screen grid md:grid-cols-2 p-3 bg-zinc-900">
-      <div className="relative w-full h-full  md:flex hidden bg-black rounded-s-md">
+      <div className="relative w-full h-full md:flex hidden bg-black rounded-s-md">
         <Image
-          alt="ok"
+          alt="Signup background"
           src="/Images/login-page.jpg"
           layout="fill"
           objectFit="cover"
@@ -80,10 +80,7 @@ const Signup = () => {
                 </a>
               </label>
             </div>
-            <button
-              type="submit"
-              className="w-full p-2 rounded-md bg-yellow-500 text-white hover:bg-yellow-700"
-            >
+            <button type="submit" className="w-full p-2 rounded-md bg-yellow-500 text-white hover:bg-yellow-700">
               Create account
             </button>
           </form>
@@ -105,7 +102,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Signup;
+export default Signup
