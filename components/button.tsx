@@ -1,13 +1,11 @@
 "use client"
 
-import type React from "react"
-
 interface ButtonProps {
   setMode: (mode: boolean) => void
   mode: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({ setMode, mode }) => {
+export default function Button({ setMode, mode }: ButtonProps) {
   const handleClick = (): void => {
     setMode(!mode)
   }
@@ -22,5 +20,3 @@ const Button: React.FC<ButtonProps> = ({ setMode, mode }) => {
     </div>
   )
 }
-
-export default Button

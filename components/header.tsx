@@ -1,37 +1,40 @@
 "use client"
 
-import type React from "react"
 import { useState, useEffect } from "react"
-import { useRouter } from "next/router"
+import { usePathname } from "next/navigation"
 import Link from "next/link"
-import NavLinks from "@/components/NavLinks"
-import Button from "@/components/button"
 import Image from "next/image"
+import { useTheme } from "./theme-provider"
+import Button from "./button"
 
-interface HeaderProps {
-  setMode: (mode: boolean) => void
-  mode: boolean
-}
+const NavLinks: string[] = ["Home", "About", "Features", "Contact"]
 
-const Header: React.FC<HeaderProps> = ({ setMode, mode }) => {
+export default function Header() {
   const [under, setUnder] = useState<number>(0)
-  const router = useRouter()
+  const pathname = usePathname()
+  const { mode, setMode } = useTheme()
 
   useEffect(() => {
-    const currentRoute: string = router.asPath
-    const currentIndex: number = NavLinks.findIndex((name: string) => `/${name.toLowerCase()}` === currentRoute)
+    const currentIndex = NavLinks.findIndex(
+      (name) => `/${name.toLowerCase()}` === pathname || (pathname === "/" && name === "Home"),
+    )
     if (currentIndex !== -1) {
       setUnder(currentIndex)
     }
-  }, [router.asPath])
+  }, [pathname])
 
   const handleUnder = (index: number): void => {
     setUnder(index)
   }
 
+  // Don't show header on login/signup pages
+  if (pathname === "/login" || pathname === "/signup") {
+    return null
+  }
+
   return (
-    <nav className="relative flex items-center justify-between py-4">
-      <Link href="/home">
+    <nav className="relative flex items-center justify-between py-4 px-4">
+      <Link href="/">
         <Image
           width={50}
           height={50}
@@ -53,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ setMode, mode }) => {
                   : "text-zinc-500 text-opacity-70"
             } border-b-4 border-transparent hover:border-b-4`}
           >
-            <Link href={`/${name.toLowerCase()}`}>{name}</Link>
+            <Link href={name === "Home" ? "/" : `/${name.toLowerCase()}`}>{name}</Link>
           </li>
         ))}
       </ul>
@@ -70,5 +73,3 @@ const Header: React.FC<HeaderProps> = ({ setMode, mode }) => {
     </nav>
   )
 }
-
-export default Header
